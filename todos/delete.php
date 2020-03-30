@@ -22,12 +22,12 @@ if($product->delete($id)){
   
     // Código de retorno - 200 OK
     http_response_code(200);
-    echo json_encode(array("message" => "Product was deleted."));
+    echo json_encode(array("message" => "Produto foi deletado."));
 
 }else{
   
     // Código de retorno - 503 service unavailable
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to delete product."));
+    echo json_encode(array("message" => "Não foi possível deletar o produto."));
 }
 ?>

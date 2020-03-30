@@ -51,7 +51,7 @@ function create($description, $completed, $createdAt, $updatedAt){
         }return false;
     }
 
-function readOne($id){
+/*function readOne($id){
 
     $this->id = id;
   
@@ -75,7 +75,7 @@ function readOne($id){
     $this->createdAt = $row['createdAt'];
     $this->updatedAt = $row['updatedAt'];
 
-    }
+    }*/
 function update($id, $description, $completed, $updatedAt){
 
     $this->id = id;
@@ -117,75 +117,5 @@ function delete($id){
         }return false;
     }
 
-// search products
-/*function search($keywords){
-  
-    // select all query
-    $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.createdAt
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    category c
-                        ON p.category_id = c.id
-            WHERE
-                p.description LIKE ? OR c.description LIKE ?
-            ORDER BY
-                p.createdAt DESC";
-  
-    // prepare query statement
-    $stmt = $this->conn->prepare($query);
-  
-    // sanitize
-    $keywords=htmlspecialchars(strip_tags($keywords));
-    $keywords = "%{$keywords}%";
-  
-    // bind
-    $stmt->bindParam(1, $keywords);
-    $stmt->bindParam(2, $keywords);
-    $stmt->bindParam(3, $keywords);
-  
-    // execute query
-    $stmt->execute();
-  
-    return $stmt;
-    }
-// read products with pagination
-/*public function readPaging($from_record_num, $records_per_page){
-  
-    // select query
-    $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.createdAt
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    category c
-                        ON p.category_id = c.id
-            ORDER BY p.createdAt DESC
-            LIMIT ?, ?";
-  
-    // prepare query statement
-    $stmt = $this->conn->prepare( $query );
-  
-    // bind variable values
-    $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
-    $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
-  
-    // execute query
-    $stmt->execute();
-  
-    // return values from database
-    return $stmt;
-    }
-// used for paging products
-/*public function count(){
-    $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_name . "";
-  
-    $stmt = $this->conn->prepare( $query );
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  
-    return $row['total_rows'];
-    }
-*/}
+}
 ?>
