@@ -41,11 +41,11 @@ _Default do endpoit = GET_
     Transfer-Encoding	chunked
     Vary	Accept-Encoding
 
-## "read" Request POSTMAN url (GET)
+## "read"Request POSTMAN url (GET)
 
         http://api.rafaelajardim.kinghost.net/todos
 
-#### Response:
+ ####   Response:
 
         {
         "Display produtos": [
@@ -89,7 +89,7 @@ _Default do endpoit = GET_
 0 = NÃO 
 null = NÃO*
 
-
+#### Exemple:
         {
         "description" : "Balões",
         "completed" : ""
@@ -126,6 +126,12 @@ null = NÃO*
 
   #### Parameters:
   		{
+   		 "id" : "",
+   		 "description" : "",
+   		 "completed" : ""
+		}  
+  #### Exemple:
+  		{
    		 "id" : "16",
    		 "description" : "Helicoptero",
    		 "completed" : ""
@@ -160,6 +166,10 @@ null = NÃO*
         http://api.rafaelajardim.kinghost.net/todos
 
   #### Parameters:
+    		{
+   		 "id" : "",
+		}
+   #### Exemple:
   		{
    		 "id" : "16",
 		}
