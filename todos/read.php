@@ -1,6 +1,7 @@
 <?php
 // headers
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
   
 // Conexão com o banco e ref ao Objeto
