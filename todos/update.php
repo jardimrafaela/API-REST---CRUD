@@ -18,12 +18,13 @@ $datetime=new DateTime();
 $data = json_decode(file_get_contents("php://input"));
 
 // update do produto  
-if($product->update(
-    $data->id,
-    $data->description,
-    $data->completed,
-    $datetime->format('Y\-m\-d\ H:i:s')
-    )){
+if(!empty($data->id)
+    ){
+        if ($product->update(
+        $data->id,
+        $data->description,
+        $data->completed,
+        $datetime->format('Y\-m\-d\ H:i:s')))
   
         // Este produto existe.- 200 ok
         http_response_code(200);
