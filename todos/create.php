@@ -18,14 +18,16 @@ $data = json_decode(file_get_contents("php://input"));
 $datetime=new DateTime();
 
 // criando o produto
-if(
-    $product->create(
-    $data->description,
-    $data->completed,
-    $datetime->format('Y\-m\-d\ H:i:s'),
-    $datetime->format('Y\-m\-d\ H:i:s'),
-    $data->category_id)
-    ){
+if(!empty($data->description)
+    
+    
+){
+        if ($product->create(
+        $data->description,
+        $data->completed,
+        $datetime->format('Y\-m\-d\ H:i:s'),
+        $datetime->format('Y\-m\-d\ H:i:s'),
+        $data->category_id))
                           
         // Código de retorno - 200 OK
         http_response_code(200);
