@@ -9,12 +9,12 @@ class Product{
     public $id;
     public $description;
     public $completed;
-    public $price;
     public $category_id;
-    public $category_description;
-    public $createdAt;
     public $updatedAt;
-  
+    public $createdAt;
+    public $price;
+   // public $category_description;
+
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
@@ -22,50 +22,45 @@ class Product{
     // read products
 function read(){
   
-    // select all query
-    /*$query = "SELECT
-                c.description as category_description, p.id, p.description, p.completed, p.price, p.category_id, p.createdAt, p.updatedAt
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    category c
-                        ON p.category_id = c.id
-            ORDER BY
-                p.createdAt DESC";*/
                 $query = "SELECT *  FROM " . $this->table_name . " ORDER BY  createdAt DESC";
     // prepare query statement
     $stmt = $this->conn->prepare($query);
   
     // execute query
     $stmt->execute();
-    print_r($stmt);
+    //print_r($stmt);
     return $stmt;
     }
 
     // create product
-function create(){
-  
+function create($description, $completed, $price, $createdAt, $updatedAt, $category_id){
+  $this->description = description;
+  $this->completed = completed;
+  $this->price = price;
+  $this->createdAt = createdAt;
+  $this->updatedAt = updatedAt;
+  $this->category_id = category_id;
+
     // query to insert record
-    $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            description=:description  price=:price, category_id=:category_id, createdAt=:createdAt";
+    $query = "INSERT INTO " . $this->table_name . " (description, completed, price, createdAt, updatedAt, category_id) 
+    VALUES('".$description."','".$completed."', '".$price."', '".$createdAt."', '".$updatedAt."', '".$category_id."')";
   
     // prepare query
     $stmt = $this->conn->prepare($query);
-  
     // sanitize
-    $this->description=htmlspecialchars(strip_tags($this->description));
+   /* $this->description=htmlspecialchars(strip_tags($this->description));
+    $this->completed=htmlspecialchars(strip_tags($this->completed));
     $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
     $this->createdAt=htmlspecialchars(strip_tags($this->createdAt));
-  
+    $this->updatedAt=htmlspecialchars(strip_tags($this->updatedAt));
+  */
     // bind values
-    $stmt->bindParam(":description", $this->description);
+   /* $stmt->bindParam(":description", $description);
+    $stmt->bindParam(":completed", $this->completed);
     $stmt->bindParam(":price", $this->price);
-    $stmt->bindParam(":category_id", $this->category_id);
     $stmt->bindParam(":createdAt", $this->createdAt);
-  
+    $stmt->bindParam(":updatedAt", $this->updatedAt);
+  */
     // execute query
     if($stmt->execute()){
         return true;
@@ -75,15 +70,15 @@ function create(){
       
     }
     // used when filling up the update product form
-function readOne(){
-  
+function readOne($id){
+  $this->id = id;
    // used when filling up the update product form
 
   
     // query to read single record
     $query = "SELECT   *  FROM " . $this->table_name . " p
             WHERE
-                p.id = ?
+                p.id = ". $id ."
             LIMIT
                 0,1";
   
@@ -91,37 +86,48 @@ function readOne(){
     $stmt = $this->conn->prepare( $query );
   
     // bind id of product to be updated
-    $stmt->bindParam(1, $this->id);
-  print_r($stmt);
+   // $stmt->bindParam(1, $id);
+
     // execute query
     $stmt->execute();
-  
+    
     // get retrieved row
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
   
     // set values to object properties
-    $this->price = $row['price'];
+    $this->id = $row['id'];
     $this->description = $row['description'];
-    $this->category_id = $row['category_id'];
-    $this->category_name = $row['category_name'];
+    $this->completed = $row['completed'];
+    $this->price = $row['price'];
+    $this->createdAt = $row['createdAt'];
+    $this->updatedAt = $row['updatedAt'];
+
 }
     // update the product
-function update(){
-  
+function update($id, $description, $completed, $price, $updatedAt, $category_id){
+    $this->id = id;
+    $this->description = description;
+    $this->completed = completed;
+    $this->price = price;
+    $this->updatedAt = updatedAt;
+    $this->category_id = category_id;
     // update query
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                description = :description,
-                price = :price,
-                category_id = :category_id
+                description = '".$description."',
+                price = '".$price."',
+                completed = '".$completed."',
+                category_id = '".$category_id."',
+                updatedAt = '".$updatedAt."' 
+
             WHERE
-                id = :id";
+                id = '".$id."'";
   
     // prepare query statement
     $stmt = $this->conn->prepare($query);
   
-    // sanitize
+  /*  // sanitize
     $this->description=htmlspecialchars(strip_tags($this->description));
     $this->price=htmlspecialchars(strip_tags($this->price));
     $this->category_id=htmlspecialchars(strip_tags($this->category_id));
@@ -132,7 +138,8 @@ function update(){
     $stmt->bindParam(':price', $this->price);
     $stmt->bindParam(':category_id', $this->category_id);
     $stmt->bindParam(':id', $this->id);
-  
+  */
+  print_r($stmt);
     // execute the query
     if($stmt->execute()){
         return true;
@@ -141,10 +148,10 @@ function update(){
     return false;
     }
     // delete the product
-function delete(){
-  
+function delete($id){
+    $this->id = id;
     // delete query
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " . $this->table_name . " WHERE id = '".$id."'";
   
     // prepare query
     $stmt = $this->conn->prepare($query);

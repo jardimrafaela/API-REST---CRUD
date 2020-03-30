@@ -21,27 +21,30 @@ $product = new Product($db);
 $data = json_decode(file_get_contents("php://input"));
   
 // make sure data is not empty
-if(
-    !empty($data->description) &&
-    !empty($data->price) &&
-    !empty($data->category_id)
-){
+//if(
+ //   !empty($data->description) &&
+//    !empty($data->completed) &&
+//    !empty($data->price)
+//){
     $datetime=new DateTime();
-    print_r($datetime);
+   // print_r($datetime);
     // set product property values
-    $product->description = $data->description;
+   /* $product->description = $data->description;
+    $product->completed = $data->completed;
     $product->price = $data->price;
-    $product->category_id = $data->category_id;
     $product->createdAt = $datetime->format('Y\-m\-d\ H:i:s');
-  
+    $product->updatedAt = $datetime->format('Y\-m\-d\ H:i:s');
+    $product->category_id = $data->category_id;
+  */
     // create the product
-    if($product->create()){
+   //print_r($product);
+    if($product->create($data->description, $data->completed, $data->price, $datetime->format('Y\-m\-d\ H:i:s'), $datetime->format('Y\-m\-d\ H:i:s'), $data->category_id)){
   
         // set response code - 201 createdAt
         http_response_code(201);
   
         // tell the user
-        echo json_encode(array("message" => "Product was createdAt."));
+        echo json_encode(array("message" => "Product was created."));
     }
   
     // if unable to create the product, tell the user
@@ -53,15 +56,15 @@ if(
         // tell the user
         echo json_encode(array("message" => "Unable to create product."));
     }
-}
+//}
   
 // tell the user data is incomplete
-else{
+/*else{
   
     // set response code - 400 bad request
     http_response_code(400);
   
     // tell the user
     echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
-}
+}*/
 ?>

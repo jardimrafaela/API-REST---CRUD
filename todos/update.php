@@ -7,7 +7,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
 // include database and object files
-include_once '../config/database.php';
+include_once '../config/config.php';
 include_once '../objects/product.php';
   
 // get database connection
@@ -16,21 +16,25 @@ $db = $database->getConnection();
   
 // prepare product object
 $product = new Product($db);
-  
+ $datetime=new DateTime(); 
 // get id of product to be edited
 $data = json_decode(file_get_contents("php://input"));
-  
+
+
 // set ID property of product to be edited
-$product->id = $data->id;
-  
+//$product->id = $data->id;
+ /* 
 // set product property values
 $product->name = $data->name;
 $product->price = $data->price;
 $product->description = $data->description;
 $product->category_id = $data->category_id;
-  
+ */ 
 // update the product
-if($product->update()){
+echo "teste";
+print_r($data);
+echo "fim do teste";    
+if($product->update($data->id, $data->description, $data->completed, $data->price, $datetime->format('Y\-m\-d\ H:i:s'), $data->category_id)){
   
     // set response code - 200 ok
     http_response_code(200);

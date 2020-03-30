@@ -7,7 +7,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
 // include database and object file
-include_once '../config/database.php';
+include_once '../config/config.php';
 include_once '../objects/product.php';
   
 // get database connection
@@ -21,10 +21,10 @@ $product = new Product($db);
 $data = json_decode(file_get_contents("php://input"));
   
 // set product id to be deleted
-$product->id = $data->id;
-  
+//$product->id = $data->id;
+$id=$_GET['id']; 
 // delete the product
-if($product->delete()){
+if($product->delete($id)){
   
     // set response code - 200 ok
     http_response_code(200);
