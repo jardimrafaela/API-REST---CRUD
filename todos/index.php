@@ -32,4 +32,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
         include 'http://api.rafaelajardim.kinghost.net/todos';
         break;
 }
+
+/*if
+}
+if($_SERVER['REQUEST_METHOD'] === 'POST'){require 'create.php';
+include 'http://api.rafaelajardim.kinghost.net/todos';
+}
+if($_SERVER['REQUEST_METHOD'] === 'PUT'){require 'update.php';
+include 'http://api.rafaelajardim.kinghost.net/todos';
+}
+if($_SERVER['REQUEST_METHOD'] === 'DELETE'){require 'delete.php';
+include 'http://api.rafaelajardim.kinghost.net/todos';
+}
+if($_SERVER['REQUEST_METHOD'] === 'GET'){require 'read_one.php';
+include 'http://api.rafaelajardim.kinghost.net/todos';
+}
+*/
+
+
+//funciona
+// Ta funcionando todas as requisições na index
+
 ?>
