@@ -25,7 +25,7 @@
 
 #### Request url GET /todos/
 
-    http://api.rafaelajardim.kinghost.net/todos
+    http://www.api.rafaelajardim.kinghost.net/todos
 
 #### Response:
 
@@ -41,7 +41,7 @@
 
 ## "read"Request POSTMAN url (GET)
 
-        https://api.rafaelajardim.kinghost.net/todos
+        http://www.api.rafaelajardim.kinghost.net/todos
 
     Response:
 
@@ -60,7 +60,7 @@
 
 #### Request url POST /todos/
 
-    https://api.rafaelajardim.kinghost.net/todos
+    http://www.api.rafaelajardim.kinghost.net/todos
 
 #### Response:
 
@@ -78,7 +78,7 @@
 
 ## "create" Request POSTMAN url (POST)
 
-        https://api.rafaelajardim.kinghost.net/todos
+        http://www.api.rafaelajardim.kinghost.net/todos
 
   #### Parameters:
   
@@ -98,6 +98,6 @@ null = NÃO*
         {"message": "Produto criado com sucesso"}
 
 #### Response http 400:
-		{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
+	{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
 		
 
