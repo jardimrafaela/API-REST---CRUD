@@ -23,9 +23,11 @@
 - PHP 5.6
 - Suporte para criação de DB MySQL
 
-#### Request url GET /todos/
+## Request url GET /todos/
 
-    www.api.rafaelajardim.kinghost.net/todos
+_Default do endpoit = GET_
+
+    http://api.rafaelajardim.kinghost.net/todos
 
 #### Response:
 
@@ -41,7 +43,7 @@
 
 ## "read"Request POSTMAN url (GET)
 
-        http://www.api.rafaelajardim.kinghost.net/todos
+        http://api.rafaelajardim.kinghost.net/todos
 
     Response:
 
@@ -58,9 +60,9 @@
             ...}]}
 
 
-#### Request url POST /todos/
+## Request url POST /todos/
 
-    http://www.api.rafaelajardim.kinghost.net/todos
+    http://api.rafaelajardim.kinghost.net/todos
 
 #### Response:
 
@@ -78,7 +80,7 @@
 
 ## "create" Request POSTMAN url (POST)
 
-        http://www.api.rafaelajardim.kinghost.net/todos
+        http://api.rafaelajardim.kinghost.net/todos
 
   #### Parameters:
   
@@ -100,4 +102,71 @@ null = NÃO*
 #### Response http 400:
 		{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
 		
+## Request url PUT /todos/
 
+    http://api.rafaelajardim.kinghost.net/todos
+
+#### Response:
+
+ 	Access-Control-Allow-Methods	PUT
+	Access-Control-Allow-Origin	*
+	Access-Control-Max-Age	3600
+	Connection	Keep-Alive
+	Content-Encoding	gzip
+	Content-Type	application/json; charset=UTF-8
+	Date	Mon, 30 Mar 2020 19:11:48 GMT
+	Keep-Alive	timeout=5, max=500
+	Server	Apache
+	Transfer-Encoding	chunked
+	Vary	Accept-Encoding
+
+## "update" Request POSTMAN url (PUT)
+
+        http://api.rafaelajardim.kinghost.net/todos
+
+  #### Parameters:
+  		{
+   		 "id" : "16",
+   		 "description" : "Helicoptero",
+   		 "completed" : ""
+		}
+#### Response http 200:
+        
+        {"message": "Produto foi atualizado"}
+
+#### Response http 503:
+		{"message": "Produto não foi atualizado."}
+		
+## Request url DELETE /todos/
+
+    http://api.rafaelajardim.kinghost.net/todos
+
+#### Response:
+
+ 	Access-Control-Allow-Methods	DELETE
+	Access-Control-Allow-Origin	*
+	Access-Control-Max-Age	3600
+	Connection	Keep-Alive
+	Content-Encoding	gzip
+	Content-Type	application/json; charset=UTF-8
+	Date	Mon, 30 Mar 2020 19:19:44 GMT
+	Keep-Alive	timeout=5, max=500
+	Server	Apache
+	Transfer-Encoding	chunked
+	Vary	Accept-Encoding
+
+## "delete" Request POSTMAN url (DELETE)
+
+        http://api.rafaelajardim.kinghost.net/todos
+
+  #### Parameters:
+  		{
+   		 "id" : "16",
+		}
+#### Response http 200:
+        
+        {"message": "Produto foi deletado."}
+
+#### Response http 503:
+		{"message": "Não foi possível deletar o produto."}
+		
