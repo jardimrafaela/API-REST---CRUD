@@ -26,12 +26,13 @@ if(
     !empty($data->price) &&
     !empty($data->category_id)
 ){
-  
+    $datetime=new DateTime();
+    print_r($datetime);
     // set product property values
     $product->description = $data->description;
     $product->price = $data->price;
     $product->category_id = $data->category_id;
-    $product->created = "now()";
+    $product->created = $datetime->format('Y\-m\-d\ H:i:s');
   
     // create the product
     if($product->create()){

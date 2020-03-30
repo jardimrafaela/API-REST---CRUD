@@ -26,7 +26,7 @@ function read(){
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
-                    category c
+                    categories c
                         ON p.category_id = c.id
             ORDER BY
                 p.created DESC";
@@ -81,7 +81,7 @@ function readOne(){
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
-                    category c
+                    categories c
                         ON p.category_id = c.id
             WHERE
                 p.id = ?
