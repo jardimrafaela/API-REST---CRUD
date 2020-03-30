@@ -14,11 +14,13 @@ include_once '../objects/product.php';
 $database = new Database();
 $db = $database->getConnection();
 $product = new Product($db);
-$datetime=new DateTime(); 
 $data = json_decode(file_get_contents("php://input"));
+$datetime=new DateTime(); 
+
 
 // update do produto  
 if(!empty($data->id)
+
     ){
         if ($product->update(
         $data->id,
