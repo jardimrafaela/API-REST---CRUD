@@ -2,7 +2,7 @@
 // headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Method: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
@@ -22,10 +22,9 @@ if(
     $product->create(
     $data->description,
     $data->completed,
-    $data->price, $datetime->format('Y\-m\-d\ H:i:s'),
     $datetime->format('Y\-m\-d\ H:i:s'),
-    $data->category_id)
-    ){
+    $datetime->format('Y\-m\-d\ H:i:s')
+    )){
                           
         // Código de retorno - 200 OK
         http_response_code(200);

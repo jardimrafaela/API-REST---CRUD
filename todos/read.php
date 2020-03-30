@@ -1,7 +1,6 @@
 <?php
 // headers
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
   
 // Conexão com o banco e ref ao Objeto
@@ -35,8 +34,6 @@ if($num>0){
             "id" => $id,
             "description" => $description,
             "completed" => $completed,
-            "price" => $price,
-            "category_id" => $category_id,
             "createdAt" => $createdAt,
             "updatedAt" => $updatedAt
         );

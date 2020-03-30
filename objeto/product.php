@@ -9,10 +9,8 @@ class Product{
     public $id;
     public $description;
     public $completed;
-    public $price;
     public $createdAt;
     public $updatedAt;
-    public $category_id;
 
     // definindo conexão do DB em variável $db
     public function __construct($db){
@@ -30,24 +28,20 @@ function read(){
     return $stmt;
     }
 
-function create($description, $completed, $price, $createdAt, $updatedAt, $category_id){
+function create($description, $completed, $createdAt, $updatedAt){
 
     $this->description = description;
     $this->completed = completed;
-    $this->price = price;
     $this->createdAt = createdAt;
     $this->updatedAt = updatedAt;
-    $this->category_id = category_id;
 
     // Insert do DB
-    $query = "INSERT INTO " . $this->table_name . " (description, completed, price, createdAt, updatedAt, category_id)
+    $query = "INSERT INTO " . $this->table_name . " (description, completed, createdAt, updatedAt)
         VALUES(
             '".$description."',
             '".$completed."',
-            '".$price."',
             '".$createdAt."',
-            '".$updatedAt."',
-            '".$category_id."'
+            '".$updatedAt."'
             )";
 
     $stmt = $this->conn->prepare($query);
@@ -78,28 +72,23 @@ function readOne($id){
     $this->id = $row['id'];
     $this->description = $row['description'];
     $this->completed = $row['completed'];
-    $this->price = $row['price'];
     $this->createdAt = $row['createdAt'];
     $this->updatedAt = $row['updatedAt'];
 
     }
-function update($id, $description, $completed, $price, $updatedAt, $category_id){
+function update($id, $description, $completed, $updatedAt){
 
     $this->id = id;
     $this->description = description;
     $this->completed = completed;
-    $this->price = price;
     $this->updatedAt = updatedAt;
-    $this->category_id = category_id;
     
     // Update no DB
     $query = "UPDATE
                 " . $this->table_name . "
             SET
                 description = '".$description."',
-                price = '".$price."',
                 completed = '".$completed."',
-                category_id = '".$category_id."',
                 updatedAt = '".$updatedAt."' 
 
             WHERE
