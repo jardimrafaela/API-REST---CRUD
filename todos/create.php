@@ -20,8 +20,7 @@ $datetime=new DateTime();
 // criando o produto
 if(!empty($data->description)
     
-    
-){
+    ){
         if ($product->create(
         $data->description,
         $data->completed,
