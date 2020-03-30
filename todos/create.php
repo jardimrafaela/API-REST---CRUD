@@ -1,70 +1,40 @@
 <?php
-// required headers
+// headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
-// get database connection
+// Conexão com o banco e ref ao Objeto
 include_once '../config/config.php';
-  
-// instantiate product object
 include_once '../objects/product.php';
-  
+
+// instanciando Objeto 
 $database = new Database();
 $db = $database->getConnection();
-  
 $product = new Product($db);
-  
-// get posted data
 $data = json_decode(file_get_contents("php://input"));
-  
-// make sure data is not empty
-//if(
- //   !empty($data->description) &&
-//    !empty($data->completed) &&
-//    !empty($data->price)
-//){
-    $datetime=new DateTime();
-   // print_r($datetime);
-    // set product property values
-   /* $product->description = $data->description;
-    $product->completed = $data->completed;
-    $product->price = $data->price;
-    $product->createdAt = $datetime->format('Y\-m\-d\ H:i:s');
-    $product->updatedAt = $datetime->format('Y\-m\-d\ H:i:s');
-    $product->category_id = $data->category_id;
-  */
-    // create the product
-   //print_r($product);
-    if($product->create($data->description, $data->completed, $data->price, $datetime->format('Y\-m\-d\ H:i:s'), $datetime->format('Y\-m\-d\ H:i:s'), $data->category_id)){
-  
-        // set response code - 201 createdAt
-        http_response_code(201);
-  
-        // tell the user
-        echo json_encode(array("message" => "Product was created."));
+$datetime=new DateTime();
+
+// criando o produto
+if(
+    $product->create(
+    $data->description,
+    $data->completed,
+    $data->price, $datetime->format('Y\-m\-d\ H:i:s'),
+    $datetime->format('Y\-m\-d\ H:i:s'),
+    $data->category_id)
+    ){
+                          
+        // Código de retorno - 200 OK
+        http_response_code(200);
+        echo json_encode(array("message" => "Produto criado com sucesso"));
+
+    }else{
+              
+        // Código de retorno - 404 Not found
+        http_response_code(400);
+        echo json_encode(array("message" => "Não foi possível criar o produto, verifique se os dados estão completos."));
     }
-  
-    // if unable to create the product, tell the user
-    else{
-  
-        // set response code - 503 service unavailable
-        http_response_code(503);
-  
-        // tell the user
-        echo json_encode(array("message" => "Unable to create product."));
-    }
-//}
-  
-// tell the user data is incomplete
-/*else{
-  
-    // set response code - 400 bad request
-    http_response_code(400);
-  
-    // tell the user
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
-}*/
 ?>
