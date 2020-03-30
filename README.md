@@ -166,13 +166,13 @@ null = NÃO*
         http://api.rafaelajardim.kinghost.net/todos
 
   #### Parameters:
-    		{
-   		 "id" : "",
-		}
+		KEY  -> id
+		VALUE  ->  
    #### Exemple:
-  		{
-   		 "id" : "16",
-		}
+		KEY  -> id
+		VALUE  ->  19
+		
+		 http://api.rafaelajardim.kinghost.net/todos/?id=19
 #### Response http 200:
         
         {"message": "Produto foi deletado."}
