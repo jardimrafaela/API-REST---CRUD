@@ -1,48 +1,52 @@
-API REST - CRUD
-Configurações:
+# API REST - CRUD
 
-    PHP 5.6
-    DataBase MySQL 5.7
-    Server Apache
+#### Configurações:
+- PHP 5.6
+- DataBase MySQL 5.7
+- Server Apache
 
-Funções:
+#### Funções:
 
-    Ler tabelas do DB (read)
-    Criar novo registro no DB (create)
-    Atualizar registro existente (update)
-    Excluir Registro (delete)
+- Ler tabelas do DB (read)
+- Criar novo registro no DB (create)
+- Atualizar registro existente (update)
+- Excluir Registro (delete)
 
-Requisitos para teste:
+#### Requisitos para teste:
 
-    Software de teste API (www.postman.com)
-    Suporte para criação de DB MySQL
+- Software de teste API (www.postman.com)
+- Suporte para criação de DB MySQL
 
-Requisitos para desenvolvimeno:
+#### Requisitos para desenvolvimeno:
 
-    Ambiente próprio para programação em PHP e Json
-    PHP 5.6
-    Suporte para criação de DB MySQL
+- Ambiente próprio para programação em PHP e Json
+- PHP 5.6
+- Suporte para criação de DB MySQL
 
-Request url GET /todos/
+## Request url GET /todos/
+
+_Default do endpoit = GET_
 
     http://api.rafaelajardim.kinghost.net/todos
 
-Response:
+#### Response:
 
-    Access-Control-Allow-Origin    *
-    Connection    Keep-Alive
-    Content-Encoding    gzip
-    Content-Type    application/json; charset=UTF-8
-    Date    Mon, 30 Mar 2020 18:12:09 GMT
-    Keep-Alive    timeout=5, max=500
-    Server    Apache
-    Transfer-Encoding    chunked
-    Vary    Accept-Encoding
+    Access-Control-Allow-Origin	*
+    Connection	Keep-Alive
+    Content-Encoding	gzip
+    Content-Type	application/json; charset=UTF-8
+    Date	Mon, 30 Mar 2020 18:12:09 GMT
+    Keep-Alive	timeout=5, max=500
+    Server	Apache
+    Transfer-Encoding	chunked
+    Vary	Accept-Encoding
 
-“read”Request POSTMAN url (GET)
+## "read"Request POSTMAN url (GET)
 
-        https://api.rafaelajardim.kinghost.net/todos
-    Response:
+        http://api.rafaelajardim.kinghost.net/todos
+
+ ####   Response:
+
         {
         "Display produtos": [
             {
@@ -55,44 +59,124 @@ Response:
             {....
             ...}]}
 
-Request url POST /todos/
 
-    https://api.rafaelajardim.kinghost.net/todos
+## Request url POST /todos/
 
-Response:
+    http://api.rafaelajardim.kinghost.net/todos
 
-    Access-Control-Allow-Method    POST
-    Access-Control-Allow-Origin    *
-    Access-Control-Max-Age    3600
-    Connection    Keep-Alive
-    Content-Encoding    gzip
-    Content-Type    application/json; charset=UTF-8
-    Date    Mon, 30 Mar 2020 18:22:07 GMT
-    Keep-Alive    timeout=5, max=500
-    Server    Apache
-    Transfer-Encoding    chunked
-    Vary    Accept-Encoding    
+#### Response:
 
-“create” Request POSTMAN url (POST)
+    Access-Control-Allow-Method	POST
+    Access-Control-Allow-Origin	*
+    Access-Control-Max-Age	3600
+    Connection	Keep-Alive
+    Content-Encoding	gzip
+    Content-Type	application/json; charset=UTF-8
+    Date	Mon, 30 Mar 2020 18:22:07 GMT
+    Keep-Alive	timeout=5, max=500
+    Server	Apache
+    Transfer-Encoding	chunked
+    Vary	Accept-Encoding    
 
-        https://api.rafaelajardim.kinghost.net/todos
+## "create" Request POSTMAN url (POST)
 
-Parameters:
+        http://api.rafaelajardim.kinghost.net/todos
 
-“completed”
-1 = SIM
-0 = NÃO
-null = NÃO
+  #### Parameters:
+  
+*"completed"*
+*1 = SIM
+0 = NÃO 
+null = NÃO*
 
+#### Exemple:
         {
         "description" : "Balões",
         "completed" : ""
         }
 
-Response http 200:
-
+  #### Response http 200:
+        
         {"message": "Produto criado com sucesso"}
 
-Response http 400:
+#### Response http 400:
+		{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
+		
+## Request url PUT /todos/
 
-        {"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
+    http://api.rafaelajardim.kinghost.net/todos
+
+#### Response:
+
+ 	Access-Control-Allow-Methods	PUT
+	Access-Control-Allow-Origin	*
+	Access-Control-Max-Age	3600
+	Connection	Keep-Alive
+	Content-Encoding	gzip
+	Content-Type	application/json; charset=UTF-8
+	Date	Mon, 30 Mar 2020 19:11:48 GMT
+	Keep-Alive	timeout=5, max=500
+	Server	Apache
+	Transfer-Encoding	chunked
+	Vary	Accept-Encoding
+
+## "update" Request POSTMAN url (PUT)
+
+        http://api.rafaelajardim.kinghost.net/todos
+
+  #### Parameters:
+  		{
+   		 "id" : "",
+   		 "description" : "",
+   		 "completed" : ""
+		}  
+  #### Exemple:
+  		{
+   		 "id" : "16",
+   		 "description" : "Helicoptero",
+   		 "completed" : ""
+		}
+#### Response http 200:
+        
+        {"message": "Produto foi atualizado"}
+
+#### Response http 503:
+		{"message": "Produto não foi atualizado."}
+		
+## Request url DELETE /todos/
+
+    http://api.rafaelajardim.kinghost.net/todos
+
+#### Response:
+
+ 	Access-Control-Allow-Methods	DELETE
+	Access-Control-Allow-Origin	*
+	Access-Control-Max-Age	3600
+	Connection	Keep-Alive
+	Content-Encoding	gzip
+	Content-Type	application/json; charset=UTF-8
+	Date	Mon, 30 Mar 2020 19:19:44 GMT
+	Keep-Alive	timeout=5, max=500
+	Server	Apache
+	Transfer-Encoding	chunked
+	Vary	Accept-Encoding
+
+## "delete" Request POSTMAN url (DELETE)
+
+        http://api.rafaelajardim.kinghost.net/todos
+
+  #### Parameters:
+		KEY  -> id
+		VALUE  ->  
+   #### Exemple:
+		KEY  -> id
+		VALUE  ->  19
+		
+		 http://api.rafaelajardim.kinghost.net/todos/?id=19
+#### Response http 200:
+        
+        {"message": "Produto foi deletado."}
+
+#### Response http 503:
+		{"message": "Não foi possível deletar o produto."}
+		
