@@ -25,7 +25,7 @@
 
 #### Request url GET /todos/
 
-    http://www.api.rafaelajardim.kinghost.net/todos
+    www.api.rafaelajardim.kinghost.net/todos
 
 #### Response:
 
@@ -98,6 +98,6 @@ null = NÃO*
         {"message": "Produto criado com sucesso"}
 
 #### Response http 400:
-	{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
+		{"message": "Não foi possível criar o produto, verifique se os dados estão completos."}
 		
 
