@@ -51,31 +51,7 @@ function create($description, $completed, $createdAt, $updatedAt){
         }return false;
     }
 
-/*function readOne($id){
 
-    $this->id = id;
-  
-    // Select do DB
-    $query = "SELECT   *  FROM " . $this->table_name . " p
-            WHERE
-                p.id = ". $id ."
-            LIMIT
-                0,1";
-
-    $stmt = $this->conn->prepare( $query );
-    $stmt->execute();
-
-    // retorno
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  
-    // Determinando o valor de cada dado
-    $this->id = $row['id'];
-    $this->description = $row['description'];
-    $this->completed = $row['completed'];
-    $this->createdAt = $row['createdAt'];
-    $this->updatedAt = $row['updatedAt'];
-
-    }*/
 function update($id, $description, $completed, $updatedAt){
 
     $this->id = id;
