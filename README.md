@@ -23,6 +23,14 @@
 - PHP 5.6
 - Suporte para criação de DB MySQL
 
+#### Arquivo de conexão:
+		api/config/config.php
+		
+		private $host = "HOST";
+		private $db_name = "NOME_DO_BANCO";
+		private $username = "USUÁRIO";
+		
+
 ## Request url GET /todos/
 
 _Default do endpoit = GET_
