@@ -33,12 +33,19 @@ if($num>0){
         // this will make $row['name'] to
         // just $name only
         extract($row);
-  
+        if (0==$completed){
+            $completed = "SIM";
+        }else{
+            $completed = "NÃO";
+        }
         $product_item=array(
             "id" => $id,
             "description" => html_entity_decode($description),
+            "completed" => $completed,
             "price" => $price,
-            "category_id" => $category_id
+            "category_id" => $category_id,
+            "createdAt" => $createdAt,
+            "updatedAt" => $updatedAt
         );
   
         array_push($products_arr["records"], $product_item);

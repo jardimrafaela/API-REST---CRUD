@@ -8,10 +8,12 @@ class Product{
     // object properties
     public $id;
     public $description;
+    public $completed;
     public $price;
     public $category_id;
     public $category_description;
-    public $created;
+    public $createdAt;
+    public $updatedAt;
   
     // constructor with $db as database connection
     public function __construct($db){
@@ -21,22 +23,22 @@ class Product{
 function read(){
   
     // select all query
-    $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.created
+    /*$query = "SELECT
+                c.description as category_description, p.id, p.description, p.completed, p.price, p.category_id, p.createdAt, p.updatedAt
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
-                    categories c
+                    category c
                         ON p.category_id = c.id
             ORDER BY
-                p.created DESC";
-  
+                p.createdAt DESC";*/
+                $query = "SELECT *  FROM " . $this->table_name . " ORDER BY  createdAt DESC";
     // prepare query statement
     $stmt = $this->conn->prepare($query);
   
     // execute query
     $stmt->execute();
-  
+    print_r($stmt);
     return $stmt;
     }
 
@@ -47,7 +49,7 @@ function create(){
     $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-            description=:description, price=:price, category_id=:category_id, created=:created";
+            description=:description  price=:price, category_id=:category_id, createdAt=:createdAt";
   
     // prepare query
     $stmt = $this->conn->prepare($query);
@@ -56,13 +58,13 @@ function create(){
     $this->description=htmlspecialchars(strip_tags($this->description));
     $this->price=htmlspecialchars(strip_tags($this->price));
     $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-    $this->created=htmlspecialchars(strip_tags($this->created));
+    $this->createdAt=htmlspecialchars(strip_tags($this->createdAt));
   
     // bind values
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":price", $this->price);
     $stmt->bindParam(":category_id", $this->category_id);
-    $stmt->bindParam(":created", $this->created);
+    $stmt->bindParam(":createdAt", $this->createdAt);
   
     // execute query
     if($stmt->execute()){
@@ -75,14 +77,11 @@ function create(){
     // used when filling up the update product form
 function readOne(){
   
+   // used when filling up the update product form
+
+  
     // query to read single record
-    $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
+    $query = "SELECT   *  FROM " . $this->table_name . " p
             WHERE
                 p.id = ?
             LIMIT
@@ -93,7 +92,7 @@ function readOne(){
   
     // bind id of product to be updated
     $stmt->bindParam(1, $this->id);
-  
+  print_r($stmt);
     // execute query
     $stmt->execute();
   
@@ -101,10 +100,11 @@ function readOne(){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
   
     // set values to object properties
+    $this->price = $row['price'];
     $this->description = $row['description'];
-    $this->price = $row['price']; 
     $this->category_id = $row['category_id'];
-    }
+    $this->category_name = $row['category_name'];
+}
     // update the product
 function update(){
   
@@ -167,7 +167,7 @@ function search($keywords){
   
     // select all query
     $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.created
+                c.description as category_description, p.id, p.description, p.price, p.category_id, p.createdAt
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
@@ -176,7 +176,7 @@ function search($keywords){
             WHERE
                 p.description LIKE ? OR c.description LIKE ?
             ORDER BY
-                p.created DESC";
+                p.createdAt DESC";
   
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -200,13 +200,13 @@ public function readPaging($from_record_num, $records_per_page){
   
     // select query
     $query = "SELECT
-                c.description as category_description, p.id, p.description, p.price, p.category_id, p.created
+                c.description as category_description, p.id, p.description, p.price, p.category_id, p.createdAt
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
                     category c
                         ON p.category_id = c.id
-            ORDER BY p.created DESC
+            ORDER BY p.createdAt DESC
             LIMIT ?, ?";
   
     // prepare query statement

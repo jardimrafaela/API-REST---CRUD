@@ -32,16 +32,16 @@ if(
     $product->description = $data->description;
     $product->price = $data->price;
     $product->category_id = $data->category_id;
-    $product->created = $datetime->format('Y\-m\-d\ H:i:s');
+    $product->createdAt = $datetime->format('Y\-m\-d\ H:i:s');
   
     // create the product
     if($product->create()){
   
-        // set response code - 201 created
+        // set response code - 201 createdAt
         http_response_code(201);
   
         // tell the user
-        echo json_encode(array("message" => "Product was created."));
+        echo json_encode(array("message" => "Product was createdAt."));
     }
   
     // if unable to create the product, tell the user
